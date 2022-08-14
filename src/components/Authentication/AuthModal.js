@@ -7,12 +7,10 @@ import Signup from "./Signup";
 import Login from "./Login";
 import { useState } from "react";
 import { CryptoState } from "../../CryptoContext";
-// import { auth } from "../../firebase";
+import { auth } from "../../firebase";
 import GoogleButton from "react-google-button";
-// import { GoogleAuthProvider, signInWithPopup } from "firebase/auth";
-import { getAuth, signInWithRedirect, GoogleAuthProvider } from "firebase/auth";
+import { GoogleAuthProvider, signInWithPopup } from "firebase/auth";
 
-const provider = new GoogleAuthProvider();
 
 const useStyles = makeStyles((theme) => ({
   modal: {
@@ -57,11 +55,13 @@ export default function AuthModal() {
     setValue(newValue);
   };
 
+
   
-  const google_auth = getAuth();
+  
+  const googleProvider = new GoogleAuthProvider();
 
   const signInWithGoogle = () => {
-       signInWithRedirect(google_auth, provider)
+    signInWithPopup(auth, googleProvider)
       .then((res) => {
         setAlert({
           open: true,
@@ -80,30 +80,6 @@ export default function AuthModal() {
         return;
       });
   };
-  
-  
-//   const googleProvider = new GoogleAuthProvider();
-
-//   const signInWithGoogle = () => {
-//     signInWithPopup(auth, googleProvider)
-//       .then((res) => {
-//         setAlert({
-//           open: true,
-//           message: `Sign Up Successful. Welcome ${res.user.email}`,
-//           type: "success",
-//         });
-
-//         handleClose();
-//       })
-//       .catch((error) => {
-//         setAlert({
-//           open: true,
-//           message: error.message,
-//           type: "error",
-//         });
-//         return;
-//       });
-//   };
 
   return (
     <div>
