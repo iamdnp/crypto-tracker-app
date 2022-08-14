@@ -9,7 +9,9 @@ import { useState } from "react";
 import { CryptoState } from "../../CryptoContext";
 import { auth } from "../../firebase";
 import GoogleButton from "react-google-button";
-import { GoogleAuthProvider, signInWithPopup } from "firebase/auth";
+// import { GoogleAuthProvider, signInWithPopup } from "firebase/auth";
+import { getAuth, signInWithRedirect } from "firebase/auth";
+
 
 const useStyles = makeStyles((theme) => ({
   modal: {
@@ -54,10 +56,11 @@ export default function AuthModal() {
     setValue(newValue);
   };
 
-  const googleProvider = new GoogleAuthProvider();
+  
+  const google_auth = getAuth();
 
   const signInWithGoogle = () => {
-    signInWithPopup(auth, googleProvider)
+       signInWithRedirect(google_auth, provider)
       .then((res) => {
         setAlert({
           open: true,
@@ -76,6 +79,30 @@ export default function AuthModal() {
         return;
       });
   };
+  
+  
+//   const googleProvider = new GoogleAuthProvider();
+
+//   const signInWithGoogle = () => {
+//     signInWithPopup(auth, googleProvider)
+//       .then((res) => {
+//         setAlert({
+//           open: true,
+//           message: `Sign Up Successful. Welcome ${res.user.email}`,
+//           type: "success",
+//         });
+
+//         handleClose();
+//       })
+//       .catch((error) => {
+//         setAlert({
+//           open: true,
+//           message: error.message,
+//           type: "error",
+//         });
+//         return;
+//       });
+//   };
 
   return (
     <div>
