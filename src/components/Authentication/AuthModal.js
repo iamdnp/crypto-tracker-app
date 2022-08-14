@@ -7,7 +7,7 @@ import Signup from "./Signup";
 import Login from "./Login";
 import { useState } from "react";
 import { CryptoState } from "../../CryptoContext";
-import { auth } from "../../firebase";
+// import { auth } from "../../firebase";
 import GoogleButton from "react-google-button";
 // import { GoogleAuthProvider, signInWithPopup } from "firebase/auth";
 import { getAuth, signInWithRedirect, GoogleAuthProvider } from "firebase/auth";
