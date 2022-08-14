@@ -10,8 +10,9 @@ import { CryptoState } from "../../CryptoContext";
 import { auth } from "../../firebase";
 import GoogleButton from "react-google-button";
 // import { GoogleAuthProvider, signInWithPopup } from "firebase/auth";
-import { getAuth, signInWithRedirect } from "firebase/auth";
+import { getAuth, signInWithRedirect, GoogleAuthProvider } from "firebase/auth";
 
+const provider = new GoogleAuthProvider();
 
 const useStyles = makeStyles((theme) => ({
   modal: {
